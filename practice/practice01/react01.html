@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const e = React.createElement;
+      class LikeButton extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            liked: false,
+          };
+        }
+        render() {
+          return e(
+            "button",
+            {
+              onClick: () => {
+                console.log("clicked");
+                this.setState({ liked: true });
+              },
+              type: "submit",
+            },
+            this.state.liked === true ? "Liked" : "Like"
+          );
+          // <button onClick = {()=> { this.setState({ liked : true})}}>Like</button>
+          //html 태그처럼 쓸 수 있다. 자바스크립트에서 html 태그를 쓰는데 이문제를 해결하기위해 babel을 쓴다.
+          // babel 로 html 태그 문법을 쓸 수 있다  type = "text/babel" => JSX
+        }
+      }
+    </script>
+    <script type="text/babel">
+      // ReactDOM.render(e(LikeButton), document.querySelector("#root"));
+      ReactDOM.render(<LikeButton />, document.querySelector("#root"));
+    </script>
+  </body>
+</html>
