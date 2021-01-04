@@ -44,19 +44,26 @@
               result: "땡",
               value: "",
             });
+            this.input.focus();
           }
         };
         onChange = (e) => this.setState({ value: e.target.value });
+
+        input;
+
         render() {
           //중괄호 사이에 js 쓸 수 있다
           //xml 에서 닫는태그 필수
           return (
-            <div>
+            <React.Fragment>
               <div>
                 {this.state.first}곱하기{this.state.second}는?
               </div>
               <form onSubmit={this.onSubmit}>
                 <input
+                  ref={(c) => {
+                    this.input = c;
+                  }}
                   type="number"
                   value={this.state.value}
                   onChange={this.onChange}
@@ -64,13 +71,27 @@
                 <button>입력</button>
               </form>
               <div>{this.state.result}</div>
-            </div>
+            </React.Fragment>
           );
         }
       }
     </script>
     <script type="text/babel">
-      ReactDOM.render(<GuGuDan />, document.querySelector("#root"));
+      //컴포넌트마다 state 가 다르기 때문에 다다른동작이 가능하다
+      //중복의제거, 혁신
+      //setState 에 함수를 넣고 리턴을 할 수있다 이러면 prevstate 값을 쓸 수 있다
+      /// 예전 상태값을 다음 상태값에 활용이 가능
+      //setState 는 비동기이다
+      // 함수에 인자로 넣어준다 클로저문제해결
+      //setState 바뀔때마다 render 함수가 실행된다 render 너무많이하면 느려짐
+      ReactDOM.render(
+        <div>
+          <GuGuDan />
+          <GuGuDan />
+          <GuGuDan />
+        </div>,
+        document.querySelector("#root")
+      );
     </script>
   </body>
 </html>
