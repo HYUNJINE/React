@@ -1,7 +1,7 @@
 import React from "react";
 
 const Display = ({ value }) => (
-  <div>
+  <div className="Header">
     <h1>{value}</h1>
   </div>
 );

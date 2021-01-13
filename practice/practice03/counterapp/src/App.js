@@ -24,9 +24,14 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
+      <div className="container has-text-centered">
         <Display value={this.state.number} />
-        <Button clickHandler={() => this.onClickHandler(1)}>증가버튼</Button>
+        <Button
+          className="button is-primary"
+          clickHandler={() => this.onClickHandler(1)}
+        >
+          증가버튼
+        </Button>
         <Button clickHandler={() => this.onClickHandler(-1)}>감소버튼</Button>
         <button onClick={() => this.onClickHandler(1)}>증가</button>
         <button onClick={() => this.onClickHandler(-1)}>감소</button>
